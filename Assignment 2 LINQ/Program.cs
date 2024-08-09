@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
+using System.Threading;
+using System.Xml;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Assignment_2_LINQ
@@ -39,7 +42,6 @@ namespace Assignment_2_LINQ
             #endregion
 
             #endregion
-
 
             #region LINQ - Aggregate operators
 
@@ -209,7 +211,82 @@ namespace Assignment_2_LINQ
 
             #endregion
 
+            #region LINQ - Set operators
 
+            //1.Find the unique Category names from Product List
+            #region Part3 - Q1
+            //var uniqueCategories = ListGenerator.ProductsList.Select(p => p.Category).Distinct();
+
+            //Console.WriteLine("Unique Category Names:");
+            //foreach (var category in uniqueCategories)
+            //{
+            //    Console.WriteLine(category);
+            //}
+            #endregion
+
+            //2.Produce a Sequence containing the unique first letter from both product and customer names.
+            #region Part3 - Q2
+            //var productFirstLetters = ListGenerator.ProductsList.Select(p => p.ProductName[0]).Distinct();
+
+            //var customerFirstLetters = ListGenerator.CustomersList.Select(c => c.CustomerName[0]).Distinct();
+
+            //var uniqueFirstLetters = productFirstLetters.Union(customerFirstLetters).Distinct();
+
+            //Console.WriteLine("Unique First Letters:");
+            //foreach (var letter in uniqueFirstLetters)
+            //{
+            //    Console.WriteLine(letter);
+            //}
+            #endregion
+
+            //3.Create one sequence that contains the common first letter from both product and customer names.
+            #region Part3 - Q3
+            //var productFirstLetters = ListGenerator.ProductsList.Select(p => p.ProductName[0]).Distinct();
+
+            //var customerFirstLetters = ListGenerator.CustomersList.Select(c => c.CustomerName[0]).Distinct();
+
+            //var commonFirstLetters = productFirstLetters.Intersect(customerFirstLetters).Distinct();
+
+            //Console.WriteLine("Common First Letters:");
+            //foreach (var letter in commonFirstLetters)
+            //{
+            //    Console.WriteLine(letter);
+            //}
+            #endregion
+
+            //4.Create one sequence that contains the first letters of product names that are not also first letters of customer names.
+            #region Part3 - Q4
+            //var productFirstLetters = ListGenerator.ProductsList.Select(p => p.ProductName[0]).Distinct();
+
+            //var customerFirstLetters = ListGenerator.CustomersList.Select(c => c.CustomerName[0]).Distinct();
+
+            //var uniqueProductFirstLetters = productFirstLetters.Except(customerFirstLetters).Distinct();
+
+            //Console.WriteLine("First Letters of Products Not in Customer Names:");
+            //foreach (var letter in uniqueProductFirstLetters)
+            //{
+            //    Console.WriteLine(letter);
+            //}
+            #endregion
+
+            //5.Create one sequence that contains the last Three Characters in each name of all customers and products, including any duplicates
+            #region Part3 - Q5
+            //var productLastThreeChars = ListGenerator.ProductsList
+            //                                         .Select(p => p.ProductName.Length >= 3 ? p.ProductName.Substring(p.ProductName.Length - 3) : p.ProductName);
+
+            //var customerLastThreeChars = ListGenerator.CustomersList
+            //                                          .Select(c => c.CustomerName.Length >= 3 ? c.CustomerName.Substring(c.CustomerName.Length - 3) : c.CustomerName);
+
+            //var combinedLastThreeChars = productLastThreeChars.Concat(customerLastThreeChars);
+
+            //Console.WriteLine("Last Three Characters of All Names:");
+            //foreach (var chars in combinedLastThreeChars)
+            //{
+            //    Console.WriteLine(chars);
+            //} 
+            #endregion
+
+            #endregion
 
         }
     }
