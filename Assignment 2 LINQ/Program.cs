@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Numerics;
@@ -367,6 +369,54 @@ namespace Assignment_2_LINQ
             #endregion
 
             #endregion
+
+            #region LINQ - Quantifiers
+
+            //1.Determine if any of the words in dictionary_english.txt(Read dictionary_english.txt into Array of String First) contain the substring 'ei'.
+            #region Part5 - Q1
+            //string[] words = File.ReadAllLines("dictionary_english.txt");
+
+            //bool containsEi = words.Any(word => word.ToLower().Contains("ei"));
+
+            //if (containsEi)
+            //{
+            //    Console.WriteLine("There are words containing the substring 'ei'.");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No words contain the substring 'ei'.");
+            //} 
+            #endregion
+
+            //2.Return a grouped a list of products only for categories that have at least one product that is out of stock.
+            #region Part5 - Q2
+            //var groupedProducts = ListGenerator.ProductsList.GroupBy(p => p.Category).Where(p => p.Any(P => P.UnitsInStock == 0));
+
+            //foreach (var group in groupedProducts)
+            //{
+            //    Console.WriteLine($"Category: {group.Key}");
+            //    foreach (var product in group)
+            //    {
+            //        Console.WriteLine($"  Product: {product.ProductName}, Units in Stock: {product.UnitsInStock}");
+            //    }
+            //}
+            #endregion
+
+            //3.Return a grouped a list of products only for categories that have all of their products in stock.
+            #region Part5 - Q3
+            //var groupedProducts = ListGenerator.ProductsList.GroupBy(p => p.Category).Where(p => p.All(P => P.UnitsInStock > 0));
+
+            //foreach (var group in groupedProducts)
+            //{
+            //    Console.WriteLine($"Category: {group.Key}");
+            //    foreach (var product in group)
+            //    {
+            //        Console.WriteLine($"  Product: {product.ProductName}, Units in Stock: {product.UnitsInStock}");
+            //    }
+            //} 
+            #endregion
+            #endregion
+
 
         }
     }
