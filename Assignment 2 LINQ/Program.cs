@@ -13,7 +13,7 @@ namespace Assignment_2_LINQ
     internal class Program
     {
         static void Main(string[] args)
-        {
+        { 
             #region LINQ - Elements operators
 
             //1.Get first Product out of Stock
