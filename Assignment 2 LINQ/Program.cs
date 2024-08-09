@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Xml;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Assignment_2_LINQ
@@ -284,6 +286,84 @@ namespace Assignment_2_LINQ
             //{
             //    Console.WriteLine(chars);
             //} 
+            #endregion
+
+            #endregion
+
+            #region LINQ - Partitioning Operators
+
+            //1.Get the first 3 orders from customers in Washington
+            #region Part4 - Q1
+            //var firstThreeOrdersInWashington = ListGenerator.CustomersList.Where(c => c.City == "Washington").SelectMany(c => c.Orders).Take(3);
+
+            //if (firstThreeOrdersInWashington.Any())
+            //{
+            //    Console.WriteLine("First 3 Orders from Customers in Washington:");
+            //    foreach (var order in firstThreeOrdersInWashington)
+            //    {
+            //        Console.WriteLine(order);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No orders found for customers in Washington.");
+            //}
+            #endregion
+
+
+            //2.Get all but the first 2 orders from customers in Washington.
+            #region Part4 - Q2
+            //var ordersAfterFirstTwoInWashington = ListGenerator.CustomersList.Where(c => c.City == "Washington").SelectMany(c => c.Orders).Skip(2);
+
+            //if (ordersAfterFirstTwoInWashington.Any())
+            //{
+            //    Console.WriteLine("All but the first 2 Orders from Customers in Washington:");
+            //    foreach (var order in ordersAfterFirstTwoInWashington)
+            //    {
+            //        Console.WriteLine(order);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No orders found for customers in Washington after skipping the first 2.");
+            //}
+            #endregion
+
+            //3.Return elements starting from the beginning of the array until a number is hit that is less than its position in the array.
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            #region Part4 - Q3
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+            //var result = numbers.Select((value, index) => new { value, index }).TakeWhile(x => x.value >= x.index).Select(x => x.value);
+
+            //Console.WriteLine("Elements until a number less than its position is hit:");
+            //Console.WriteLine(string.Join(", ", result));
+            #endregion
+
+            //4.Get the elements of the array starting from the first element divisible by 3.
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            #region Part4 - Q4
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+            //int index = numbers.Select((value, index) => new { value, index }).FirstOrDefault(x => x.value % 3 == 0)?.index ?? -1;
+
+            //var result = index >= 0 ? numbers.Skip(index).ToArray() : new int[0]; // Return an empty array if no element divisible by 3 is found
+
+            //Console.WriteLine("Elements starting from the first element divisible by 3:");
+            //Console.WriteLine(string.Join(", ", result));
+
+            #endregion
+
+            //5.Get the elements of the array starting from the first element less than its position.
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            #region Part4 - Q5
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 }; 
+
+            //var result = numbers.Select((value, index) =>  new { value, index }).SkipWhile(x => x.value >= x.index).Select(x => x.value);
+
+            //Console.WriteLine("Elements starting from the first element less than its position:");
+            //Console.WriteLine(string.Join(", ", result));
+
             #endregion
 
             #endregion
