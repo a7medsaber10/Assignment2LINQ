@@ -1,22 +1,43 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlTypes;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Metrics;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Assignment_2_LINQ
 {
+    public class SameCharactersTogetherComparer : IEqualityComparer<string>
+    {
+        public bool Equals(string? x, string? y)
+        {
+            if (x == null || y == null)
+            {
+                return false;
+            }
+
+            return string.Concat(x.Order()) == string.Concat(y.Order());
+        }
+
+        public int GetHashCode([DisallowNull] string obj)
+        {
+            return string.Concat(obj.Order()).GetHashCode();
+        }
+    }
     internal class Program
     {
         static void Main(string[] args)
@@ -417,7 +438,62 @@ namespace Assignment_2_LINQ
             #endregion
             #endregion
 
+            #region LINQ – Grouping Operators
+            //1.Use group by to partition a list of numbers by their remainder when divided by 5
+            //List<int> numbers = new list<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+            #region Part6 - Q1
+            //List<int> numbers = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
 
+            //var groupedNumbers = numbers.GroupBy(n => n % 5);
+
+            //foreach (var group in groupedNumbers)
+            //{
+            //    Console.WriteLine($"Remainder {group.Key}:");
+            //    foreach (var number in group)
+            //    {
+            //        Console.Write($"{number} ");
+            //    }
+            //    Console.WriteLine();
+            //} 
+            #endregion
+
+            //2.Uses group by to partition a list of words by their first letter.
+            //Use dictionary_english.txt for Input
+            #region Part6 - Q2
+            //List<string> words = File.ReadAllLines("dictionary_english.txt").ToList();
+
+            //var groupedWords = words.GroupBy(w => w[0]);
+
+            //foreach (var group in groupedWords)
+            //{
+            //    Console.WriteLine($"First Letter '{group.Key}':");
+            //    foreach (var word in group)
+            //    {
+            //        Console.WriteLine(word);
+            //    }
+            //    Console.WriteLine();
+            //} 
+            #endregion
+
+            //3.Consider this Array as an Input
+            //String[] Arr = { "from", "salt", "earn", " last", "near", "form"};
+            //Use Group By with a custom comparer that matches words that are consists of the same Characters Together
+            #region Part6 - Q3
+            //string[] Arr = { "from", "salt", "earn", "last", "near", "form" };
+
+            //var groupedWords = Arr.GroupBy(word => word, new SameCharactersTogetherComparer());
+
+            //foreach (var group in groupedWords)
+            //{
+            //    foreach (var word in group)
+            //    {
+            //        Console.WriteLine(word);
+            //    }
+            //    Console.WriteLine("......");
+            //} 
+            #endregion
+
+            #endregion
         }
     }
 }
